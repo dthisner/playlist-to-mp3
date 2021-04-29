@@ -1,0 +1,19 @@
+{
+  "name": "m3u-to-drive",
+  "version": "0.0.1",
+  "description": "This is to copy files from your iTunes playlist into your music player. Avoding copying music that you don't really fancy.",
+  "main": "main.go",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dthisner/playlist-to-mp3.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dthisner/playlist-to-mp3/issues"
+  },
+  "homepage": "https://github.com/dthisner/playlist-to-mp3#readme"
+}
