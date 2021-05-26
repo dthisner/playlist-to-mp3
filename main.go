@@ -6,13 +6,22 @@ import (
 	"io"
 	"log"
 	"os"
+	"time"
+
+	"github.com/hako/durafmt"
 )
 
+var copied, excisted int
+var startTime time.Time
+
 func main() {
+	startTime = time.Now()
 	err := readPlaylist()
 	if err != nil {
 		log.Fatal(err)
 	}
+		duration := durafmt.Parse(time.Since(startTime)).String()
+	fmt.Printf("It took %s\nand copied %d files and %d was already on target location", duration, copied, excisted)
 }
 
 func readPlaylist() error {
@@ -63,11 +72,11 @@ func setupPath(fileDest string) error {
 }
 
 func copyFile(fileDest, orgLocation string) error {
-	fmt.Printf("Copying: \"%s\" to \"%s\"\n", orgLocation, fileDest)
-
 	// Checks to see if the file already exists
 	_, err := os.Stat(fileDest)
 	if os.IsNotExist(err) {
+		fmt.Printf("Copying: \"%s\" \nTo: \"%s\"\n", orgLocation, fileDest)
+
 		// Open the original file
 		original, err := os.Open(orgLocation)
 		if err != nil {
@@ -81,16 +90,18 @@ func copyFile(fileDest, orgLocation string) error {
 		}
 		defer new.Close()
 
-		bytesWritten, err := io.Copy(new, original)
+		_, err = io.Copy(new, original)
 		if err != nil {
 			return err
 		}
 
-		fmt.Printf("Bytes Written: %d\n", bytesWritten)
+		fmt.Printf("Successful\n")
+		copied++
 		return nil
 	}
 
-	fmt.Println("File already exists")
+		fmt.Printf("Skipping, Already exists - \"%s\"\n", fileDest)
+	excisted++
 	return nil
 }
 

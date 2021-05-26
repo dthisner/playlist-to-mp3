@@ -18,6 +18,10 @@ This is to copy files from your iTunes playlist into your music player. Avoding 
 1. [x] Check to see if the file already exists and don't copy new if it does
 1. [ ] Overwrite to copy over if the file exist already
 1. [x] Check to see if folder already exist to skip the creating folder step again
-1. [ ] Ability to pass in variables
 1. [ ] Setup using UI as a desktop app
-1. [ ] Write out a summary of Time it took, files copied, list of failed files
+1. [x] Write out a summary of Time it took, files copied
+1. [ ] List files that wasn't able to be copied
+
+## Bug
+
+1. [ ] Needs to open and save m3u file before using it
