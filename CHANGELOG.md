@@ -1,5 +1,11 @@
 # CHANGELOG.md
 
+## 0.0.2
+
+Features:
+
+-
+
 ## 0.0.1
 
 Features:

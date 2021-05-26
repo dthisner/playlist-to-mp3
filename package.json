@@ -1,6 +1,6 @@
 {
   "name": "m3u-to-drive",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "This is to copy files from your iTunes playlist into your music player. Avoding copying music that you don't really fancy.",
   "main": "main.go",
   "scripts": {
