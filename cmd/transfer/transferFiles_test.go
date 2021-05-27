@@ -1,4 +1,7 @@
-package main
+/*
+Copyright © 2021 Dennis Thisner <dthisner@protonmail.com>
+*/
+package transfer
 
 import (
 	"testing"

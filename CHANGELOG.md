@@ -4,7 +4,7 @@
 
 Features:
 
--
+- Added Cobra support to start making a neat CLI
 
 ## 0.0.1
 

@@ -21,6 +21,7 @@ This is to copy files from your iTunes playlist into your music player. Avoding 
 1. [ ] Setup using UI as a desktop app
 1. [x] Write out a summary of Time it took, files copied
 1. [ ] List files that wasn't able to be copied
+1. [ ] Implement Cobra
 
 ## Bug
 
