@@ -12,6 +12,8 @@ import (
 
 	homedir "github.com/mitchellh/go-homedir"
 	"github.com/spf13/viper"
+
+	constans "github.com/dthisner/m3u-to-drive/constants"
 )
 
 var cfgFile, destination, m3uLocation, origin string
@@ -75,27 +77,27 @@ func initConfig() {
 
 	if err := viper.ReadInConfig(); err != nil {
 		if _, ok := err.(viper.ConfigFileNotFoundError); ok {
-			fmt.Println("no config file was found")
+			fmt.Println(constans.MissingConfig)
 		} else {
-			log.Fatal("Problem reading the config file: ", err)
+			log.Fatal(constans.ReadingConfig, err)
 		}
 	}
 
-	viper.BindPFlag("destination", rootCmd.Flags().Lookup("dest"))
-	viper.BindPFlag("origin", rootCmd.Flags().Lookup("origin"))
-	viper.BindPFlag("m3uLocation", rootCmd.Flags().Lookup("m3u"))
+	viper.BindPFlag(constans.Dest, rootCmd.Flags().Lookup("dest"))
+	viper.BindPFlag(constans.Origin, rootCmd.Flags().Lookup("origin"))
+	viper.BindPFlag(constans.M3uLocation, rootCmd.Flags().Lookup("m3u"))
 
 	checkEnvVariables()
 }
 
 func checkEnvVariables() {
-	if !viper.IsSet("destination") {
-		log.Fatal("please provide a destination")
+	if !viper.IsSet(constans.Dest) {
+		log.Fatal(constans.MissingDest)
 	}
-	if !viper.IsSet("m3uLocation") {
-		log.Fatal("please provide the m3u file location")
+	if !viper.IsSet(constans.Origin) {
+		log.Fatal(constans.MissingOrigin)
 	}
-	if !viper.IsSet("origin") {
-		log.Fatal("please provide the origin of your local music")
+	if !viper.IsSet(constans.M3uLocation) {
+		log.Fatal(constans.MissingM3uLoc)
 	}
 }

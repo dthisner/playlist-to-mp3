@@ -14,6 +14,8 @@ import (
 
 	"github.com/hako/durafmt"
 	"github.com/spf13/viper"
+
+	constans "github.com/dthisner/m3u-to-drive/constants"
 )
 
 var copied, excisted int
@@ -21,9 +23,9 @@ var startTime time.Time
 var M3U_LOCATION, DESTINATION, ORIGIN string
 
 func StartTransfer() error {
-	M3U_LOCATION = viper.GetString("m3uLocation")
-	DESTINATION = viper.GetString("destination")
-	ORIGIN = viper.GetString("origin")
+	M3U_LOCATION = viper.GetString(constans.M3uLocation)
+	DESTINATION = viper.GetString(constans.Dest)
+	ORIGIN = viper.GetString(constans.Origin)
 
 	startTime = time.Now()
 	err := readPlaylist()

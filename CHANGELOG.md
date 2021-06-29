@@ -12,6 +12,7 @@ Features:
 Improvements:
 
 - Moved transfer files into package folder
+- Added constants for configs and error messages
 
 ## 0.0.1
 
