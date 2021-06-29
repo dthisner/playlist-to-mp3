@@ -12,16 +12,17 @@ This is to copy files from your iTunes playlist into your music player. Avoding 
 ## ToDo
 
 1. [ ] Run in parallel
-1. [ ] Config file for variables
+1. [x] Config file for variables
 1. [ ] Unit Tests
-1. [ ] Ability to pass in variables
+1. [x] Ability to pass in variables
 1. [x] Check to see if the file already exists and don't copy new if it does
 1. [ ] Overwrite to copy over if the file exist already
 1. [x] Check to see if folder already exist to skip the creating folder step again
 1. [ ] Setup using UI as a desktop app
 1. [x] Write out a summary of Time it took, files copied
 1. [ ] List files that wasn't able to be copied
-1. [ ] Implement Cobra
+1. [x] Implement Cobra
+1. [ ] Added better usage instructions for Cobra
 
 ## Bug
 
