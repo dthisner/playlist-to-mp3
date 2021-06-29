@@ -5,6 +5,7 @@ package cmd
 
 import (
 	"fmt"
+	"log"
 	"os"
 
 	"github.com/spf13/cobra"
@@ -13,7 +14,7 @@ import (
 	"github.com/spf13/viper"
 )
 
-var cfgFile string
+var cfgFile, destination, m3uLocation, origin string
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
@@ -41,6 +42,9 @@ func init() {
 	// will be global for your application.
 
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.m3u-to-drive.yaml)")
+	rootCmd.PersistentFlags().StringVar(&destination, "dest", "", "Where should the files be copied to")
+	rootCmd.PersistentFlags().StringVar(&m3uLocation, "m3u", "", "The location for the m3u file")
+	rootCmd.PersistentFlags().StringVar(&origin, "origin", "", "verbose output")
 
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
@@ -53,12 +57,12 @@ func initConfig() {
 		// Use config file from the flag.
 		viper.SetConfigFile(cfgFile)
 	} else {
-		// Find home directory.
 		home, err := homedir.Dir()
 		cobra.CheckErr(err)
 
-		// Search config in home directory with name ".m3u-to-drive" (without extension).
 		viper.AddConfigPath(home)
+		viper.AddConfigPath(".")
+		viper.SetConfigType("json")
 		viper.SetConfigName(".m3u-to-drive")
 	}
 
@@ -67,5 +71,31 @@ func initConfig() {
 	// If a config file is found, read it in.
 	if err := viper.ReadInConfig(); err == nil {
 		fmt.Fprintln(os.Stderr, "Using config file:", viper.ConfigFileUsed())
+	}
+
+	if err := viper.ReadInConfig(); err != nil {
+		if _, ok := err.(viper.ConfigFileNotFoundError); ok {
+			fmt.Println("no config file was found")
+		} else {
+			log.Fatal("Problem reading the config file: ", err)
+		}
+	}
+
+	viper.BindPFlag("destination", rootCmd.Flags().Lookup("dest"))
+	viper.BindPFlag("origin", rootCmd.Flags().Lookup("origin"))
+	viper.BindPFlag("m3uLocation", rootCmd.Flags().Lookup("m3u"))
+
+	checkEnvVariables()
+}
+
+func checkEnvVariables() {
+	if !viper.IsSet("destination") {
+		log.Fatal("please provide a destination")
+	}
+	if !viper.IsSet("m3uLocation") {
+		log.Fatal("please provide the m3u file location")
+	}
+	if !viper.IsSet("origin") {
+		log.Fatal("please provide the origin of your local music")
 	}
 }

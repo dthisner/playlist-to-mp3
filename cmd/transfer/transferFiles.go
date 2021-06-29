@@ -13,24 +13,30 @@ import (
 	"time"
 
 	"github.com/hako/durafmt"
+	"github.com/spf13/viper"
 )
 
 var copied, excisted int
 var startTime time.Time
+var M3U_LOCATION, DESTINATION, ORIGIN string
 
 func StartTransfer() error {
+	M3U_LOCATION = viper.GetString("m3uLocation")
+	DESTINATION = viper.GetString("destination")
+	ORIGIN = viper.GetString("origin")
+
 	startTime = time.Now()
 	err := readPlaylist()
 	if err != nil {
 		return err
 	}
-		duration := durafmt.Parse(time.Since(startTime)).String()
+	duration := durafmt.Parse(time.Since(startTime)).String()
 	fmt.Printf("It took %s\nand copied %d files and %d was already on target location", duration, copied, excisted)
 	return nil
 }
 
 func readPlaylist() error {
-	file, err := os.Open("/Users/dennis/Desktop/lovedTracks.m3u")
+	file, err := os.Open(M3U_LOCATION)
 	if err != nil {
 		return fmt.Errorf("problem opening the playlist: '%s' \n ", err)
 	}
@@ -105,16 +111,13 @@ func copyFile(fileDest, orgLocation string) error {
 		return nil
 	}
 
-		fmt.Printf("Skipping, Already exists - \"%s\"\n", fileDest)
+	fmt.Printf("Skipping, Already exists - \"%s\"\n", fileDest)
 	excisted++
 	return nil
 }
 
 func fileDest(orgLocation string) string {
-	stringToRemove := "/Users/dennis/Music/iTunes/iTunes Media/Music"
-	destination := "/Volumes/Hugin/Music"
-
-	return destination + orgLocation[len(stringToRemove):]
+	return DESTINATION + orgLocation[len(ORIGIN):]
 }
 
 // This removes the name of the music file from the string

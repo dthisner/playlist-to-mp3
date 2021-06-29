@@ -5,6 +5,9 @@
 Features:
 
 - Added Cobra support to start making a neat CLI
+- Supporting config file
+- Supporting flags
+- Added mod file
 
 ## 0.0.1
 

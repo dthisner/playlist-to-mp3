@@ -4,8 +4,6 @@ Copyright © 2021 Dennis Thisner <dthisner@protonmail.com>
 package cmd
 
 import (
-	"fmt"
-
 	"github.com/spf13/cobra"
 
 	"github.com/dthisner/m3u-to-drive/cmd/transfer"
@@ -27,14 +25,9 @@ to quickly create a Cobra application.`,
 var startCmd = &cobra.Command{
 	Use:   "start",
 	Short: "Start transfering your music",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Long:  `Starts transfering files from origin to destination`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		fmt.Println("random called")
+
 		if err := transfer.StartTransfer(); err != nil {
 			return err
 		}
