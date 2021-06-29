@@ -6,7 +6,7 @@ package cmd
 import (
 	"github.com/spf13/cobra"
 
-	"github.com/dthisner/m3u-to-drive/cmd/transfer"
+	"github.com/dthisner/m3u-to-drive/pkg/transfer"
 )
 
 // transferCmd represents the root transfer command

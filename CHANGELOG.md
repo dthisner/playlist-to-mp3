@@ -9,6 +9,10 @@ Features:
 - Supporting flags
 - Added mod file
 
+Improvements:
+
+- Moved transfer files into package folder
+
 ## 0.0.1
 
 Features:
