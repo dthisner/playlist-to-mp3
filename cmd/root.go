@@ -44,9 +44,9 @@ func init() {
 	// will be global for your application.
 
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.m3u-to-drive.yaml)")
-	rootCmd.PersistentFlags().StringVar(&destination, "dest", "", "Where should the files be copied to")
-	rootCmd.PersistentFlags().StringVar(&m3uLocation, "m3u", "", "The location for the m3u file")
-	rootCmd.PersistentFlags().StringVar(&origin, "origin", "", "verbose output")
+	rootCmd.PersistentFlags().StringVar(&destination, constans.Dest, "", "Where should the files be copied to")
+	rootCmd.PersistentFlags().StringVar(&m3uLocation, constans.M3u, "", "The location for the m3u file")
+	rootCmd.PersistentFlags().StringVar(&origin, constans.Origin, "", "verbose output")
 
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
@@ -83,9 +83,9 @@ func initConfig() {
 		}
 	}
 
-	viper.BindPFlag(constans.Dest, rootCmd.Flags().Lookup("dest"))
-	viper.BindPFlag(constans.Origin, rootCmd.Flags().Lookup("origin"))
-	viper.BindPFlag(constans.M3uLocation, rootCmd.Flags().Lookup("m3u"))
+	viper.BindPFlag(constans.Dest, rootCmd.Flags().Lookup(constans.Dest))
+	viper.BindPFlag(constans.Origin, rootCmd.Flags().Lookup(constans.Org))
+	viper.BindPFlag(constans.M3uLocation, rootCmd.Flags().Lookup(constans.M3u))
 
 	checkEnvVariables()
 }
