@@ -1,6 +1,6 @@
 {
-  "destination": "/Users/dthisner/Desktop/newFolder",
-  "destination1": "/Volumes/SD_CARD/MUSIC",
-  "origin": "/Users/dthisner/Music/Media",
+  "destination1": "/Users/dthisner/Desktop/newFolder",
+  "destination": "/Volumes/Freya/Music",
+  "origin": "/Users/dthisner/Music/Media/Music",
   "m3uLocation": "/Users/dthisner/Desktop/lovedTracks.m3u"
 }
